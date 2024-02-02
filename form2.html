@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forms</title>
+    <title>Registration Page</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -13,16 +13,15 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        h2 {
-            text-align: center;
-            color: #007BFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
 
         form {
-            max-width: 600px;
-            margin: 20px auto;
+            max-width: 400px;
+            width: 100%;
             padding: 20px;
             background-color: #fff;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -37,12 +36,10 @@
         label {
             display: block;
             margin-bottom: 5px;
-            color: #007BFF;
+            color: grey;
         }
 
-        input,
-        select,
-        textarea {
+        input {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
@@ -52,15 +49,14 @@
             transition: border-color 0.3s ease-in-out;
         }
 
-        input:hover,
-        select:hover,
-        textarea:hover {
-            border-color: #007BFF;
+        input:hover {
+            border-color: brown;
         }
 
         input[type="submit"],
-        input[type="reset"] {
-            background-color: #007BFF;
+        select {
+            margin-bottom: 20px;
+            background-color: lightseagreen;
             color: #fff;
             padding: 10px 15px;
             border: none;
@@ -69,86 +65,61 @@
             transition: background-color 0.3s ease-in-out;
         }
 
-        input[type="submit"]:hover,
-        input[type="reset"]:hover {
-            background-color: #0056b3;
-        }
-
-        textarea {
-            resize: vertical;
+        input[type="submit"]:hover {
+            background-color: seagreen;
         }
     </style>
 </head>
 
 <body>
-    <form action="Backend.php">
-        <!-- Your form content here -->
-        <div>
-            <label for="name">Your Name:</label>
-    
-        <input type="text" name ="myname" id ="name">
-        </div>
-    <br>
-    <div>
-    <label for="myemail">Your Email:</label>
-    
-        <input type="text" name ="myemail" id="myemail">
-    </div>
-    <br>
-    <div>
-        <label for="role">Role:</label>
-        <input type="text" name ="myrole" id="role">
-    </div>
-    <br>
-    <div>
-        <label for="date">Date:</label>
-        <input type="date" name="mydate"
-        id="dat" >
-    </div>
-    <br>
-    <div>
-       Are you eligible: <input type="checkbox" name="myeligiblility" value="on">
-    </div>
-    <br>
-    <div>
-        <label for="bonus"> Bonus:</label>
-       <input type="number" name ="myBonus">
-    </div>
-    <br>
-    <div>
-        Your Name:<input type="text" name ="myname">
-    </div>
-    <br>
-    
-    <div>
-        Gender Male: <input type="radio" name="myGender"> Gender Female: <input type="radio" name="myGender">
-        other: <input type="radio" name="myGender">
-    </div>
-    <br>
-    <div>
-       <!-- write about yourself : <br><textarea name="mytextarea" cols="30" rows="10"></textarea> -->
-    write about yourself: <br><textarea name="mytextarea" id="ta" cols="30" rows="10" ></textarea>   
-    </div>
-    <br>
-    <div>
-    <label for="car">Car:</label>
-        <!-- <select name="myCar" id="car">
-        <option value="ind" >Indica</option>
-        <option value="swf"selected>Swift</option>
-        <option value="Sco">Scorpio</option>
-        </select> -->
-    <select name="car" id="mycar">
-        <option value="ind">indica</option>
-        <option value="swi" selected>swift</option>
-        <option value="sco">Scorpio</option>
-    </select>
-    </div>
-    <br>
-    <div>
-        <input type="submit" value="submit now">
-        <input type="reset" value="reset now">
-    </div>
+    <form id="registrationForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+        <input type="submit" value="Register">
     </form>
+
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Basic validation
+            var username = document.getElementById("username").value;
+            var email = document.getElementById("email").value;
+            var gender = document.getElementById("gender").value;
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+
+            if (!username || !email || !gender || !password || !confirmPassword) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return;
+            }
+
+            // Perform registration logic here (send data to server or perform desired actions)
+            alert("Registration successful!");
+        });
+    </script>
 </body>
 
 </html>
